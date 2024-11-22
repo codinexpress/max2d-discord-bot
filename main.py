@@ -1,4 +1,11 @@
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+try:
+    load_dotenv()
+except FileNotFoundError:
+    print("Warning: .env file not found. Make sure you have created a .env file with your bot token.")
 
 import discord
 from discord.ext import commands
