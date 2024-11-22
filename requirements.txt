@@ -3,4 +3,9 @@ pip
 autopep8
 
 # App
-google-generativeai # Client library for the Gemini API
+google-generativeai # Client library for the Gemini API 
+
+# Test
+pytest
+pytest-mock
+discord.py
