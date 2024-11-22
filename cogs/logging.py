@@ -4,31 +4,37 @@ import logging
 from logging.handlers import RotatingFileHandler
 import os
 
-class LoggingCog(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
-        self.logger = logging.getLogger('discord')
-        self.logger.setLevel(logging.INFO)
 
-        log_dir = "/resources/logging"
-        os.makedirs(log_dir, exist_ok=True)  # Create the directory if it doesn't exist
+class LoggingCog(commands.Cog):
+    """Cog for logging messages to a file."""
+
+    def __init__(self, bot: commands.Bot):
+        """Initialize the LoggingCog."""
+        self.bot = bot  
+        self.logger = self._setup_logger()
+
+    def _setup_logger(self):
+        """Set up the logger."""
+        logger = logging.getLogger('discord')
+        logger.setLevel(logging.INFO)
+
+        log_dir = "resources/logging"  # Use a relative path for better portability
+        os.makedirs(log_dir, exist_ok=True)
         log_file = os.path.join(log_dir, "discord.log")
 
-        handler = RotatingFileHandler(
-            filename=log_file,
-            maxBytes=10 * 1024 * 1024,  # 10MB
-            backupCount=5,
-            encoding='utf-8'  # Ensure proper encoding for special characters
-        )
+        handler = RotatingFileHandler(filename=log_file, maxBytes=10485760, backupCount=5, encoding='utf-8') 
         formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)
-        self.logger.addHandler(handler)
+        logger.addHandler(handler)
 
+        return logger
 
     @commands.Cog.listener()
-    async def on_message(self, message):
-        self.logger.info(f"Message from {message.author}: {message.content}")
+    async def on_message(self, message: discord.Message):
+        """Log messages to the file."""
+        if not message.author.bot:  # Avoid logging bot messages
+            self.logger.info(f"Message from {message.author}: {message.content}")
 
 
 def setup(bot):
-    bot.add_cog(LoggingCog(bot))
+    bot.add_cog(LoggingCog(bot))  # Correct; no need to await
