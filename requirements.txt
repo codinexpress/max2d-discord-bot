@@ -8,6 +8,9 @@ autopep8
 # google-generativeai - Client library for the Gemini API
 google-generativeai
 
+# Loads environment variables from a .env file.
+python-dotenv
+
 # Test
 # pytest - A framework for writing and running tests.
 pytest
