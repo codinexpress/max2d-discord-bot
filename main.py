@@ -94,11 +94,9 @@ if __name__ == "__main__":
     token = os.environ.get("DISCORD_BOT_TOKEN")
     if token is None:
         print("DISCORD_BOT_TOKEN environment variable is not set.")
-        return
-
     bot_owner_id = os.environ.get("BOT_OWNER_ID")
     if bot_owner_id is None:
         print("BOT_OWNER_ID environment variable is not set.")
-        return
+
 
     bot.run(token)

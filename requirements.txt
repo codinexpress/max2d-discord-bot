@@ -1,11 +1,17 @@
 # Dev environment
-pip
-autopep8
+# pip - The Python package installer
+pip 
+# autopep8 - Automatically formats Python code to conform to the PEP 8 style guide.
+autopep8 
 
 # App
-google-generativeai # Client library for the Gemini API 
+# google-generativeai - Client library for the Gemini API
+google-generativeai
 
 # Test
+# pytest - A framework for writing and running tests.
 pytest
+# pytest-mock - Provides mocking capabilities for pytest.
 pytest-mock
+# discord.py - A library for interacting with the Discord API.
 discord.py
