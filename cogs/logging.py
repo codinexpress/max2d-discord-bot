@@ -36,5 +36,5 @@ class LoggingCog(commands.Cog):
             self.logger.info(f"Message from {message.author}: {message.content}")
 
 
-def setup(bot):
-    bot.add_cog(LoggingCog(bot))  # Correct; no need to await
+async def setup(bot):
+    await bot.add_cog(LoggingCog(bot))
