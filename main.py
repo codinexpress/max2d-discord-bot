@@ -21,7 +21,7 @@ async def on_ready():
     for filename in os.listdir("./cogs"):
         if filename.endswith(".py"):
             try:
-                bot.load_extension(f"cogs.{filename[:-3]}")
+                await bot.load_extension(f"cogs.{filename[:-3]}")
                 print(f"Loaded cog: {filename[:-3]}")
             except Exception as e:
                 print(f"Failed to load cog: {filename[:-3]}")
