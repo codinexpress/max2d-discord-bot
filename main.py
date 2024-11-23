@@ -26,6 +26,8 @@ async def on_ready():
             except Exception as e:
                 print(f"Failed to load cog: {filename[:-3]}")
                 print(f"Error: {e}")
+    # Sync the bot's commands globally
+    await bot.tree.sync()
 
 
 @bot.tree.command(name="hello", description="Say hello!")
